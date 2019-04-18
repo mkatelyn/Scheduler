@@ -1,0 +1,7 @@
+#!/bin/bash
+
+cat var.ptrace > gcctest.ptrace
+awk '{i = 1;for(i=1;i<31;i++){$i = $i * ($i*3/2)}; print}' num.ptrace >> gcctest.ptrace
+./hotspot -c hotspot.config -f ev6.flp -p gcctest.ptrace -o gcc.ttrace > hotspot_output.txt
+
+java -jar shcedulertest.jar
